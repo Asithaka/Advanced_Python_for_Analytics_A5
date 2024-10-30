@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 grades = pd.Series([87,100,94])
 
 #Pandas displays a Series in two-column format with the indices left aligned
@@ -7,8 +8,9 @@ grades = pd.Series([87,100,94])
 #After listing the Series elements, pandas shows the data type (dtype) of
 #the underlying array’s elements:
 
+print(grades)
 
-
+# series are one dimensional
 pd.Series(98.6, range(3))
 
 #0    98.6
@@ -34,7 +36,7 @@ grades.std()
 
 # Calling Series method describe produces all these stats and more:
 
-grades.describe()
+print(grades.describe())
 
 
 
@@ -76,6 +78,7 @@ grades.values
 #Series of Strings
 hardware = pd.Series(['Hammer', 'Saw', 'Wrench'])
 
+
 ''' 0 Hammer
     1    Saw
     2 Wrench
@@ -98,34 +101,72 @@ hardware.str.upper()
     1       SAW
     2    WRENCH  '''
 
+# convert a series object to a python list
+
+hardware_list = hardware.tolist()
+
+print(hardware_list)
 
 
+# compare two series
+
+ds1 = pd.Series([2,4,6,8,10])
+
+ds2 = pd.Series([1,3,5,7,10])
+
+print(ds1 == ds2)
+
+print(ds1 > ds2)
+
+# convert a series of list to one series
+
+list_of_series = pd.Series([
+    ['Red',  'Green', 'White'],
+    ['Red','Black'],
+    ["Yellow"]
+])
+
+print(list_of_series)
+
+one_series = list_of_series.apply(pd.Series).stack().reset_index(drop = True)
+
+print(one_series)
+
+# Sort a series
+
+s = pd.Series('100','200','python', '300.12', '400')
+
+# numric first then alphnumeric in srting
+# all elemenmt should be same data type
 
 
+sorted_series = s.sort_values()
+print(sorted_series)
 
 
+# add to a Series
 
+added = s._append(pd.Series(['500', 'php']))
+print(added)
 
+# to rest the index 
 
+s = s.reset_index(drop =True)
+print(s)
 
+# write code to calculate frequency count of each uniquw  value of given sereis
 
+import pandas as pd
 
+import random
 
+list1 = [random.randrange(1,10) for i in range(0,101)]
 
+s = pd.Series(list1)
+print(s)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+result = s.value_counts()
+print(result)
 
 
 

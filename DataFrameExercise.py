@@ -12,10 +12,11 @@ labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
 
 #given the data above, create a datafram using the labels as row indexes and perform the following tasks#
 
+exam_df = pd.DataFrame(exam_data)
 
+exam_df.index = labels
 
-
-
+print(exam_df)
 
 
 """ 
@@ -34,11 +35,8 @@ h      Laura    NaN
 i      Kevin    8.0                                                    
 j      Jonas   19.0 
 """
-
-
-
-
-
+df1 = exam_df[['name','score']]
+print(df1)
 
 """
 (2) Select 'name' and 'score' columns in rows 1, 3, 5, 6 from the data frame.
@@ -52,9 +50,8 @@ g   14.5     yes
 
 """
 
-
-
-
+df2 = exam_df.loc[['b','d','f','g'],'name':'qualify']
+print(df2)
 
 
 """
@@ -68,9 +65,8 @@ f  Michael   20.0         3     yes
 
 """
 
-
-
-
+df3 = exam_df[exam_df['attempts']>2]
+print(df3)
 
 
 """
@@ -84,10 +80,9 @@ j         1      Jonas       yes        19.0
 
 """
 
-
-
-
-
+df4 = exam_df[(exam_df['score'] >= 15 ) & (exam_df['score'] <= 20)]
+df4 = df4[['attempts', 'name', 'qualify', 'score']]
+print(df4)
 
 """
 (5) sort a given DataFrame by two or more columns - attempts, name
@@ -107,6 +102,9 @@ Expected Output:
 
 """
 
-
+exam_df = exam_df.reset_index()
+df5 = exam_df.sort_values(by = ['attempts', 'name'])
+df5 = df5[['attempts', 'name', 'qualify', 'score']]
+print(df5)
 
 
