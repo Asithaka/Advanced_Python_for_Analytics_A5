@@ -59,4 +59,6 @@ print(updatedArray)
 print("-----------------------------------------------   STEP NINE  -----------------------------------------------")
 
 print(updatedArray)
+updatedArray[2,3] = 20.14
+print(updatedArray)
 
