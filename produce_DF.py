@@ -48,14 +48,12 @@ produce_dictionary = {'Potatoes': [0.86, 12219, 10508],
 
 df_pro = pd.DataFrame(produce_dictionary)
 df_pro = df_pro.T
-df_pro.columns = ['Quantity', 'Price', 'Total']
-df_pro1 = df_pro
+df_pro.columns = ['Price','Quantity', 'Total']
+df_pro = df_pro
 # df_pro['Produce'] = df_pro.index
 # df_pro = df_pro.reset_index(drop = True)
 # df_pro = df_pro[['Produce','Quantity', 'Price', 'Total']]
-print(df_pro1)
-
-
+print(df_pro)
 
 
 print("Question 1: Produce that had the highest and lowest sales in total sales (both name of produce and value)")
@@ -69,49 +67,50 @@ df1_min_index = df1.index[0]
 df1_max = df1.iloc[-1]
 df1_max_index = df1.index[-1]
 
-print(f"Product : {df1_min_index} , Lowest Value : {df1_min}")
-print(f"Product : {df1_max_index} , Highest Value : {df1_max}")
+print(f"Product : {df1_min_index} , Lowest Sale Value: {df1_min}")
+print(f"Product : {df1_max_index} , Highest Sale Value : {df1_max}")
 
 
 print("Question 2: Using 'loc', display the quantity and total sales for 'Orange' and 'Beets' (together)")
 
 df2 = df_pro.loc[['Orange', 'Beets'], ['Quantity', 'Total']].sum()
 
-print(df2)
+print(f" The quantity and total sales for 'Orange' and 'Beets' (together) is {df2['Quantity']}")
 
 
 print("Question 3: Using 'loc', display the total sales for 'Apples' through 'Lettuce'")
 
-df3 = df_pro.loc['Apples':'Lettuce', ['Quantity', 'Total']].sum()
+df3 = df_pro.loc['Apples':'Lettuce', 'Total'].sum()
 
-print(df3)
+print(f"Total sales for 'Apples' through 'Lettuce' is  {df3}")
 
 
 print("Question 4: Using 'at', update the quantity sold for Apricots to 11,955 and total sales to 44,353.05")
 
-df_pro.at['Apricots', 'Price'] = 11955
+df_pro.at['Apricots', 'Quantity'] = 11955
 df_pro.at['Apricots', 'Total'] = 44353.05
 
+print(df_pro)
 
 print("Question 5: What is the average quantity sold across all products? print out only quantity sold")
 
 
-df4 = df_pro['Price'].mean()
+df4 = df_pro['Quantity'].mean()
 
-print(df4)
+print(f" The average quantity sold across all products is {df4}")
 
 
 print("Question 6: Create a new dataframe for only those produce that have sold \
 between 11,500 to 12,000 (quantity)")
 
 
-new_df = df_pro[(df_pro['Price'] >= 11500) & (df_pro['Price'] <= 12000)]
+new_df = df_pro[(df_pro['Quantity'] >= 11500) & (df_pro['Quantity'] <= 12000)]
 
 print(new_df)
 
 print("Question 7: What is the total sales for the products in the above new \
 dataframe? (print out ONLY total sales, not cost per pound or quantity sold)")
 
-print(new_df['Price'].sum())
+print(f" The total sales for the products in the above new dataframe is {new_df['Total'].sum()}")
 
 

@@ -50,7 +50,7 @@ g   14.5     yes
 
 """
 
-df2 = exam_df.loc[['b','d','f','g'],'name':'qualify']
+df2 = exam_df.loc[['b','d','f','g'],['name','qualify']]
 print(df2)
 
 
